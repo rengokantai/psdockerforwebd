@@ -78,6 +78,10 @@ services:
     build:
       context: .
       dockerfile: node.dockerfile
+    environment:
+      - NODE_ENV=production
+    ports:
+      - "3000:3000"
     networks:
       - networkname
   mongodb:
@@ -111,3 +115,18 @@ stop and remove all containers
 ```
 docker-compose down --rmi all --volumes
 ```
+
+######managing dev env
+remove all locked container
+```
+docker rm -f $(docker pa -a -q)
+```
+
+main crux:*****
+create docker-compose.yml file, create multiple services, each service has xx.dockerfile file, may execute script using RUN command, then set env var, then docker-compose can get these env var
+
+
+
+
+
+#####running in cloud
